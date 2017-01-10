@@ -1,10 +1,20 @@
 <?php
 require_once('db.php');
 
+if ($_GET['req'] !== 'load') {
+    if ($_GET['req'] === 'add') {
+        $name = $_GET['name'];
+        $fee = $_GET['fee'];
+        $subject = $_GET['subject'];
+        $sql = "INSERT INTO student (name, fee, subject) VALUES ('$name', '$fee', '$subject')";
+        $conn->query($sql);
+    }
+}
+
 $sql = "SELECT * FROM student";
 $result = $conn->query($sql);
 
-while ($student = $result->fetch_assoc()){
+while ($student = $result->fetch_assoc()) {
     ?>
     <tr>
         <td><?php echo $student['id'] ?></td>
