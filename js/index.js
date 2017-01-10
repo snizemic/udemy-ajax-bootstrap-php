@@ -13,3 +13,5 @@ const ajax = () => {
 
 document.getElementById('test')
     .addEventListener('click', ajax);
+
+window.onload = ajax;
