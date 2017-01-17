@@ -1,4 +1,4 @@
-const ajax = (req) => {
+const ajax = (req, id) => {
     let xhr = new XMLHttpRequest();
     let url = 'http://localhost/udemy-ajax-bootstrap-php/data.php';
 
@@ -6,7 +6,16 @@ const ajax = (req) => {
     let fee = document.getElementById('fee').value;
     let subject = document.getElementById('subject').value;
 
-    url += `?req=${req}&name=${name}&fee=${fee}&subject=${subject}`;
+    switch (req) {
+        case undefined:
+            break;
+        case 'add':
+            url += `?req=${req}&name=${name}&fee=${fee}&subject=${subject}`;
+            break;
+        case 'del':
+            url += `?req=${req}&id=${id}`;
+            break;
+    }
 
     xhr.open('GET', url, true);
     xhr.onreadystatechange = () => {
@@ -21,6 +30,21 @@ const ajax = (req) => {
     xhr.send();
 };
 
+const edit_ajax = (req, id) => {
+    let xhr = new XMLHttpRequest();
+    let url = `http://localhost/udemy-ajax-bootstrap-php/edit.php?id=${id}`;
+
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState = !4 || xhr.status != 200) {
+            return;
+        }
+        document.getElementById('form-data').innerHTML = xhr.responseText;
+    }
+    xhr.send();
+
+}
+
 document.getElementById('add')
     .addEventListener('click', (event) => {
         event.preventDefault();
@@ -28,4 +52,4 @@ document.getElementById('add')
         event.target.blur();
     })
 
-window.onload = ajax('load');
+window.onload = ajax();
