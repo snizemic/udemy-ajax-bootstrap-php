@@ -30,7 +30,7 @@ while ($student = $result->fetch_assoc()) {
         <td><?php echo $student['fee'] ?></td>
         <td><?php echo $student['subject'] ?></td>
         <td>
-            <a class="btn btn-primary btn-xs" onclick="edit_ajax('upd_button', <?php echo $student['id'] ?>);">Edit</a>
+            <a class="btn btn-primary btn-xs" onclick="edit_ajax('upd', <?php echo $student['id'] ?>);">Edit</a>
             <a class="btn btn-danger btn-xs" onclick="ajax('del', <?php echo $student['id'] ?>);">Delete</a>
         </td>
     </tr>  
